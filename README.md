@@ -42,11 +42,28 @@ The app runs at http://localhost:3000. Without Supabase configured it will use l
 
 > This is a single-user app: the schema disables Row Level Security so the anon key can read and write. **Do not share the deployed URL publicly** — anyone with it can see and edit your data. If you want privacy, deploy it behind a password using [Vercel Password Protection](https://vercel.com/docs/security/deployment-protection) or add Supabase Auth.
 
-## Deploy to Vercel
+## Deploy to GitHub Pages (current setup)
 
-1. Push this repo to GitHub.
-2. Import it on [vercel.com](https://vercel.com/new).
-3. Add the two env vars above in the Vercel project settings.
+The repo is configured to deploy as a static site to GitHub Pages at
+`https://<username>.github.io/Task-list/` via the workflow in
+`.github/workflows/deploy.yml`.
+
+One-time setup:
+
+1. In the repo, go to **Settings → Pages**.
+2. Under **Source**, pick **GitHub Actions** (not "Deploy from a branch").
+3. (Optional, for sync) In **Settings → Secrets and variables → Actions**, add
+   two repository secrets:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+4. Push to `main` or the configured branch — the workflow builds and deploys.
+
+## Deploy to Vercel (alternative)
+
+1. Import the repo on [vercel.com](https://vercel.com/new).
+2. Remove `output: "export"` and `basePath` from `next.config.mjs`
+   (Vercel runs the full Next.js server).
+3. Add the two Supabase env vars in Vercel project settings.
 4. Deploy.
 
 ## Installing to your phone

@@ -2,18 +2,20 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   title: "Task List",
   description: "Personal goals, tasks, and daily reflections.",
-  manifest: "/manifest.webmanifest",
+  manifest: `${basePath}/manifest.webmanifest`,
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
     title: "Task List",
   },
   icons: {
-    icon: "/icon.svg",
-    apple: "/icon-192.png",
+    icon: `${basePath}/icon.svg`,
+    apple: `${basePath}/icon-192.png`,
   },
 };
 
